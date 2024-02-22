@@ -1,0 +1,31 @@
+{
+  "name": "cliente-manager-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/herciliols/cliente-manager-app.git"
+  },
+  "keywords": [
+    "customer",
+    "management",
+    "application",
+    "Node.js",
+    "express",
+    "mysql2"
+  ],
+  "author": "Hercílio Luz Simões",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/herciliols/cliente-manager-app/issues"
+  },
+  "homepage": "https://github.com/herciliols/cliente-manager-app#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql2": "^3.9.1"
+  }
+}
