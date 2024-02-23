@@ -2,9 +2,9 @@
   "name": "cliente-manager-app",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "src/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon -r dotenv/config src/app.js"
   },
   "repository": {
     "type": "git",
@@ -26,9 +26,11 @@
   "homepage": "https://github.com/herciliols/cliente-manager-app#readme",
   "dependencies": {
     "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.9.1"
   },
   "devDependencies": {
-    "dotenv": "^16.4.5"
+    "dotenv": "^16.4.5",
+    "nodemon": "^3.1.0"
   }
 }
