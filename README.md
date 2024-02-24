@@ -45,10 +45,10 @@ The Client Manager App is a Node.js application that provides a basic structure 
 
     The server will be available at [http://localhost:3000](http://localhost:3000).
 
-## Routes
+6. **Explore API documentation:**
 
-- `POST /auth/login`: Route for user authentication and obtaining JWT token.
-- `GET /dashboard`: Protected route, requires authentication with JWT token, whose session currently expires after 10 minutes.
+    The API is fully documented using Swagger. After running the application, visit [http://localhost:3000/api-docs](http://localhost:3000/api-docs) to explore and interact with the endpoints. Note that you need to obtain a JWT token through the endpoint `POST /auth/login` to access the remaining endpoints.
+
 
 ## Main Technologies
 
