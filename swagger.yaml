@@ -1,0 +1,110 @@
+openapi: 3.0.3
+info:
+  title: Client Manager App
+  version: 1.0.11
+servers:
+  - url: http://localhost:3000
+tags:
+  - name: login
+    description: autenticação e obtenção de token
+paths:
+  /auth/login:
+    post:
+      tags:
+        - login
+      summary: Autenticação para obter token
+      description: Autentica usuário
+      operationId: addPet
+      requestBody:
+        description: Autentica
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponseSuccess'
+                
+        '400':
+          description: Bad Request 
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponseBadRequest'
+        '401':
+          description: Unauthorized 
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponseUnauthorized'
+                
+        '500':
+          description: Internal Server Error 
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponseInternalServerError'
+      security: []
+
+
+components:
+  schemas:
+    LoginRequest:
+      required:
+        - username
+        - password
+      type: object
+      properties:
+        username:
+          type: string
+          example: usuario
+        password:
+          type: string
+          example: 123
+    LoginResponseSuccess:
+      type: object
+      properties:
+        token:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoidXN1YXJpbyIsImlhdCI6MTcwODczOTE5MiwiZXhwIjoxNzA4NzM5NzkyfQ.GsZwa_ItPy6cl7dlC43ivB3eVIseA4IuoVGxuRjCqjo
+    LoginResponseBadRequest:
+     type: object
+     properties:
+      error:
+        type: string
+        example: Bad Request
+      message: 
+        type: string
+        example: Campos obrigatórios 'username' e 'password' são necessários e não podem estar vazios.  
+    LoginResponseUnauthorized:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Unauthorized
+        message: 
+          type: string
+          example: Credenciais inválidas. A autenticação é necessária para acessar este recurso.
+    LoginResponseInternalServerError:
+     type: object
+     properties:
+      error:
+        type: string
+        example: Internal Server Error
+      message: 
+        type: string
+        example: Ocorreu um erro interno no servidor.  
+    
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      
+security:
+- BearerAuth: []
