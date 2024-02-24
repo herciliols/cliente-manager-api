@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 23/02/2024 às 02:50
+-- Tempo de geração: 24/02/2024 às 03:00
 -- Versão do servidor: 10.11.6-MariaDB-cll-lve
 -- Versão do PHP: 7.2.34
 
@@ -34,6 +34,17 @@ CREATE TABLE `clientes` (
   `sexo` enum('Masculino','Feminino') NOT NULL,
   `data_nascimento` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Despejando dados para a tabela `clientes`
+--
+
+INSERT INTO `clientes` (`id`, `nome`, `sobrenome`, `sexo`, `data_nascimento`) VALUES
+(1, 'João', 'Silva', 'Masculino', '1990-05-15'),
+(2, 'Maria', 'Santos', 'Feminino', '1985-08-22'),
+(3, 'Carlos', 'Oliveira', 'Masculino', '1995-03-10'),
+(4, 'Ana', 'Ribeiro', 'Feminino', '1988-11-28'),
+(5, 'Rafael', 'Pereira', 'Masculino', '1992-09-05');
 
 -- --------------------------------------------------------
 
@@ -79,7 +90,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de tabela `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `users`
