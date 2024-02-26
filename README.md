@@ -11,13 +11,13 @@ The Client Manager App is a Node.js application that provides a basic structure 
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/herciliols/cliente-manager-app.git
+    git clone https://github.com/herciliols/cliente-manager-api.git
     ```
 
 2. **Install dependencies:**
 
     ```bash
-    cd cliente-manager-app
+    cd cliente-manager-api
     npm install
     ```
 
@@ -67,4 +67,4 @@ This project is licensed under the ISC License - see the [LICENSE.md](LICENSE.md
 
 ---
 
-For more details about the application, visit [https://github.com/herciliols/cliente-manager-app](https://github.com/herciliols/cliente-manager-app). 🌟
+For more details about the application, visit [https://github.com/herciliols/cliente-manager-api](https://github.com/herciliols/cliente-manager-api). 🌟

@@ -1,5 +1,5 @@
 {
-  "name": "cliente-manager-app",
+  "name": "cliente-manager-api",
   "version": "1.0.0",
   "description": "",
   "main": "src/app.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/herciliols/cliente-manager-app.git"
+    "url": "https://github.com/herciliols/cliente-manager-api.git"
   },
   "keywords": [
     "customer",
@@ -21,9 +21,9 @@
   "author": "Hercílio Luz Simões",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/herciliols/cliente-manager-app/issues"
+    "url": "https://github.com/herciliols/cliente-manager-api/issues"
   },
-  "homepage": "https://github.com/herciliols/cliente-manager-app#readme",
+  "homepage": "https://github.com/herciliols/cliente-manager-api#readme",
   "dependencies": {
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",

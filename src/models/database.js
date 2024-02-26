@@ -14,13 +14,9 @@ const pool = mysql.createPool({
     queueLimit: 0
 });
 
-pool.getConnection() // Utilize o pool para obter uma conexão
+pool.getConnection() 
     .then((connection) => {
-        console.log('Conexão bem-sucedida ao banco de dados');
-
-        // Mantenha a lógica de verificação da conexão aqui, se necessário
-
-        connection.release(); // Libere a conexão de volta para o pool
+        connection.release();
     })
     .catch((err) => {
         console.error('Erro ao conectar ao banco de dados:', err);

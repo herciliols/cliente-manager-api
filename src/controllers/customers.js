@@ -15,13 +15,13 @@ const getAllCustomers = async (req, res) => {
 };
 
 const getCustomerById = async (req, res) => {
-    const customerId = req.params.id; // Obtém o ID da URL
+    const customerId = req.params.id; 
 
     try {
         const result = await query('SELECT * FROM clientes WHERE id = ?', [customerId]);
         
         if (result.length > 0) {
-            res.json(result[0]); // Retorna o cliente com o ID especificado como JSON
+            res.json(result[0]); 
         } else {
             res.status(404).json({ error: "Cliente não encontrado" });
         }

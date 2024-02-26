@@ -24,7 +24,7 @@ const login = async (req, res) => {
           message: "Credenciais inválidas. A autenticação é necessária para acessar este recurso."
         });
       }else{
-        const token = jwt.sign({ userId: user.id, username: user.username }, 'seuSegredoSuperSecreto', {
+        const token = jwt.sign({ userId: user.id, username: user.username }, 'Ch4v3M1xTa', {
           expiresIn: '10m', 
         });
         res.status(200).json({ token: token });
