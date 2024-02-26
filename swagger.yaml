@@ -21,7 +21,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/LoginRequest'
+              $ref: '#/components/schemas/LoginPostRequest'
         required: true
       responses:
         '200':
@@ -52,12 +52,6 @@ paths:
                 $ref: '#/components/schemas/LoginResponseInternalServerError'
       security: []
       
-      
-
-        
-        
-        
-  
   /customers/:
     get:
       tags:
@@ -67,13 +61,94 @@ paths:
       parameters: []
       responses:
         '200':
-          description: successful operation
+          description: OK
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/LoginResponseSuccess'          
+                $ref: '#/components/schemas/CustomersGetResponseSuccess'
+      security:
+        - BearerAuth: []
+      x-swagger-router-controller: false
+
+  /customers/{customerId}:
+    get:
+      tags:
+        - clientes
+      summary: Obter um único cliente pelo ID
+      description: Retorna um único cliente pelo ID
+      parameters:
+        - name: customerId
+          in: path
+          description: ID do cliente a ser retornado
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomersGetResponseSuccess'
+      security:
+        - BearerAuth: []
+      x-swagger-router-controller: false
+      
+  /customers/update/{customerId}:
+    put:
+      tags:
+        - clientes
+      summary: Atualizar dados de um cliente
+      description: Atualizar dados de um cliente existente por ID
+      parameters:
+        - name: customerId
+          in: path
+          description: ID do cliente a ser atualizado
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Dados do cliente a serem atualizados
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerPostRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerPutResponseSuccess'        
+      security:
+        - BearerAuth: []
+      x-swagger-router-controller: false
+
+  /customers/delete/{customerIds}:
+    delete:
+      tags:
+        - clientes
+      summary: Deletar clientes
+      description: Deletar um conjunto de clientes pelo id 
+      parameters:
+        - name: customerIds
+          in: path
+          description: Lista de IDs de clientes a serem excluídos (separados por vírgula)
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomersDeleteResponseSuccess'
       security:
         - BearerAuth: []
       x-swagger-router-controller: false
@@ -84,7 +159,7 @@ paths:
   
 components:
   schemas:
-    LoginRequest:
+    LoginPostRequest:
       required:
         - username
         - password
@@ -129,7 +204,60 @@ components:
       message: 
         type: string
         example: Ocorreu um erro interno no servidor.  
-    
+
+    CustomersGetResponseSuccess:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: integer
+            example: 3
+          nome:
+            type: string
+            example: "Carlos"
+          sobrenome:
+            type: string
+            example: "Oliveira"
+          sexo:
+            type: string
+            example: "Masculino"
+          data_nascimento:
+            type: string
+            format: date-time
+            example: "1995-03-10T03:00:00.000Z"
+    CustomersDeleteResponseSuccess:
+      required:
+        - username
+        - password
+      type: object
+      properties:
+        message:
+          type: string
+          example: Clientes com IDs [1, 2] excluídos com sucesso
+    CustomerPutResponseSuccess:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Cliente com ID 3 atualizado com sucesso
+    CustomerPostRequest:
+      type: object
+      properties:
+        nome:
+          type: string
+          example: João
+        sobrenome:
+          type: string
+          example: Silva
+        sexo:
+          type: string
+          example: Masculino
+        data_nascimento:
+          type: string
+          example: 1990-01-01
+          
+          
   securitySchemes:
     BearerAuth:
       type: http 

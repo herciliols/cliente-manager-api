@@ -55,8 +55,39 @@ const updateCustomerById = async (req, res) => {
     }
 };
 
+const deleteCustomersByIds = async (req, res) => {
+    const customerIds = req.params.id; 
+
+    if (!customerIds || typeof customerIds !== 'string') {
+        return res.status(400).json({ error: 'Parâmetro de IDs de clientes inválido' });
+    }
+
+    const customerIdsArray = customerIds.split(',').map(id => parseInt(id.trim(), 10));
+
+    if (customerIdsArray.length === 0) {
+        return res.status(400).json({ error: 'Array de IDs de clientes inválido ou vazio' });
+    }
+
+    try {
+        const placeholders = customerIdsArray.map(() => '?').join(', ');
+        const result = await query(`DELETE FROM clientes WHERE id IN (${placeholders})`, customerIdsArray);
+
+        if (result.affectedRows > 0) {
+            res.json({ message: `Clientes com IDs [${customerIdsArray.join(', ')}] excluídos com sucesso` });
+        } else {
+            res.status(404).json({ error: "Nenhum cliente encontrado para exclusão" });
+        }
+    } catch (error) {
+        res.status(500).json({
+            error: "Internal Server Error",
+            message: "Ocorreu um erro interno no servidor."
+        });
+    }
+};
+
 module.exports = { 
     getAllCustomers, 
     getCustomerById, 
-    updateCustomerById 
+    updateCustomerById,
+    deleteCustomersByIds
 };
