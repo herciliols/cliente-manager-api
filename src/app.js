@@ -1,8 +1,8 @@
 const express = require('express');
 const swaggerUi = require('swagger-ui-express');
 const bodyParser = require('body-parser');
-const authRoutes = require('./routes/authRoutes');
-const customersRoutes = require('./routes/customersRoutes');
+const authRoutes = require('./routes/auth');
+const customersRoutes = require('./routes/customers');
 
 const app = express();
 const yaml = require('yamljs');
@@ -12,9 +12,9 @@ app.use(bodyParser.json());
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openApiSpec));
 
-app.use('/auth', authRoutes);
+app.use(authRoutes);
+app.use(customersRoutes);
 
-app.use('/customers', customersRoutes);
 
 const PORT = process.env.PORT || 3000;
 

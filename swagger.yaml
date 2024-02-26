@@ -6,15 +6,16 @@ servers:
   - url: http://localhost:3000
 tags:
   - name: login
-    description: autenticação e obtenção de token
+    description: Usuario
+  - name: clientes
+    description: Gestão de clientes
 paths:
-  /auth/login:
+  /login:
     post:
       tags:
         - login
       summary: Autenticação para obter token
-      description: Autentica usuário
-      operationId: addPet
+      description: Autenticação de usuário
       requestBody:
         description: Autentica
         content:
@@ -50,8 +51,37 @@ paths:
               schema:
                 $ref: '#/components/schemas/LoginResponseInternalServerError'
       security: []
+      
+      
 
+        
+        
+        
+  
+  /customers/:
+    get:
+      tags:
+        - clientes
+      summary: Obter todos os clientes cadastrados
+      description: Todos os clientes
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LoginResponseSuccess'          
+      security:
+        - BearerAuth: []
+      x-swagger-router-controller: false
 
+      
+      
+      
+  
 components:
   schemas:
     LoginRequest:
@@ -102,9 +132,10 @@ components:
     
   securitySchemes:
     BearerAuth:
-      type: http
+      type: http 
       scheme: bearer
       bearerFormat: JWT
+
       
 security:
 - BearerAuth: []
