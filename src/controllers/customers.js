@@ -1,10 +1,23 @@
 const { query } = require('../models/database');
 
 const getAllCustomers = async (req, res) => {
-
+    /* #swagger.tags = ['clientes'],
+       #swagger.security = [{
+            "bearerAuth": []
+    }] */
     try {
         const result = await query('SELECT * FROM clientes');
-        res.json(result);
+        /* #swagger.responses[200] = {
+            content: {
+                "application/json": {
+                    schema:{
+                        $ref: "#/components/schemas/CustomersGetResponseSuccess"
+                    }
+                }           
+            }
+        }   
+        */
+        res.status(200).json(result);
     
     } catch (error) {
         res.status(500).json({
@@ -15,6 +28,12 @@ const getAllCustomers = async (req, res) => {
 };
 
 const getCustomerById = async (req, res) => {
+    /* 
+    #swagger.tags = ['clientes'],
+    #swagger.security = [{
+                "BearerAuth": []
+    }] 
+    */
     const customerId = req.params.id; 
 
     try {
@@ -34,6 +53,12 @@ const getCustomerById = async (req, res) => {
 };
 
 const updateCustomerById = async (req, res) => {
+    /* 
+    #swagger.tags = ['clientes'],
+    #swagger.security = [{
+                "BearerAuth": []
+    }] 
+    */
     const customerId = req.params.id; 
     const newData = req.body; 
 
@@ -56,6 +81,12 @@ const updateCustomerById = async (req, res) => {
 };
 
 const deleteCustomersByIds = async (req, res) => {
+    /* 
+    #swagger.tags = ['clientes'],
+    #swagger.security = [{
+                "BearerAuth": []
+    }] 
+    */
     const customerIds = req.params.id; 
 
     if (!customerIds || typeof customerIds !== 'string') {

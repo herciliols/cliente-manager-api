@@ -1,16 +1,15 @@
 const express = require('express');
 const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('../swagger-output.json');
 const bodyParser = require('body-parser');
 const authRoutes = require('./routes/auth');
 const customersRoutes = require('./routes/customers');
 
 const app = express();
-const yaml = require('yamljs');
-const openApiSpec = yaml.load('swagger.yaml');
 
 app.use(bodyParser.json());
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openApiSpec));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use(authRoutes);
 app.use(customersRoutes);
