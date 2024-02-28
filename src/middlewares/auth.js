@@ -4,7 +4,7 @@ const authenticateUser = (req, res, next) => {
     const tokenHeader = req.header('Authorization');
 
     if (!tokenHeader) {
-        return res.status(401).json({ message: 'Token não fornecido' });
+        return res.status(401).json({ message: 'Acesso não autorizado.' });
     }
 
     const token = tokenHeader.replace('Bearer ', ''); 
