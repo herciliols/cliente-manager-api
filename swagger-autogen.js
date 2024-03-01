@@ -1,7 +1,7 @@
 const swaggerAutogen = require('swagger-autogen')({openapi: '3.0.0'});
 
 const outputFile = './swagger-output.json';
-const endpointsFiles = ['src/routes/auth.js', 'src/routes/customers.js']; 
+const endpointsFiles = ['src/modules/customers/customersRoutes.ts', 'src/modules/login/authRoutes.ts']; 
 
 
 const doc = {
