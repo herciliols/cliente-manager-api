@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/app.js",
   "scripts": {
-    "start": "node swagger-autogen.js && nodemon -r dotenv/config src/app.ts",
+    "start": "ts-node -r module-alias/register -r dotenv/config swagger-autogen.js && nodemon -r dotenv/config src/app.ts",
     "dev": "ts-node src/app.ts",
     "generate-swagger": "node swagger-autogen.js"
   },
@@ -39,10 +39,19 @@
     "@types/swagger-ui-express": "^4.1.6",
     "@types/validator": "^13.11.9",
     "dotenv": "^16.4.5",
+    "module-alias": "^2.2.3",
     "nodemon": "^3.1.0",
     "swagger-autogen": "^2.23.7",
     "swagger-ui-express": "^5.0.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
+  },
+  "_moduleAliases": {
+    "@root": ".",
+    "@deep": "src/some/very/deep/directory/or/file",
+    "@my_module": "lib/some-file.js",
+    "something": "src/foo",
+    "@modules": "src/modules",
+    "@config": "src/config"
   }
 }

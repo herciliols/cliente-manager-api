@@ -1,4 +1,4 @@
-import { pool } from '../../../config/database';
+import { pool } from '@config/database';
 
 
 async function getCustomersByPage(page: number, pageSize: number) {

@@ -12,7 +12,10 @@
     "moduleResolution": "node",
     "baseUrl": "./src",
     "paths": {
-      "*": ["types/*"]
+      "*": ["types/*"],
+      "@/*": ["*"],
+      "@config/*": ["config/*"],
+      "@modules/*": ["modules/*"]
     }
   },
   "include": ["src/**/*.ts"],

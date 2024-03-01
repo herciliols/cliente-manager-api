@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { authenticateUser } from '../login/middlewares/auth';
-import { validateUpdateCustomerData } from '../customers/middlewares/customers';
+import { authenticateUser } from '@modules/login/middlewares/auth';
+import { validateUpdateCustomerData } from '@modules/customers/middlewares/customers';
 import { 
   getAllCustomers,
   getCustomerById

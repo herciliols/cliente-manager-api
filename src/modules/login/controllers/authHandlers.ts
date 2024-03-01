@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { sign } from 'jsonwebtoken';
-import { validateCredentials } from '../models/authQueries';
+import { validateCredentials } from '@modules/login/models/authQueries';
 
 interface LoginRequestBody {
   username: string;

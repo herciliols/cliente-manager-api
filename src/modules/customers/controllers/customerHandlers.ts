@@ -1,6 +1,5 @@
 import { Request, Response, Router } from 'express';
-import { getCustomersByPage, findCustomerById } from '../models/customerQueries';
-
+import { getCustomersByPage, findCustomerById } from '@modules/customers/models/customerQueries';
 interface CustomerData {
     id: number;
     nome: string;
