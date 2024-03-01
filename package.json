@@ -48,9 +48,6 @@
   },
   "_moduleAliases": {
     "@root": ".",
-    "@deep": "src/some/very/deep/directory/or/file",
-    "@my_module": "lib/some-file.js",
-    "something": "src/foo",
     "@modules": "src/modules",
     "@config": "src/config"
   }
