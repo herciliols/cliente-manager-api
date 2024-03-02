@@ -76,7 +76,7 @@
         }
       }
     },
-    "/customers/page/{page}/pageSize/{pageSize}": {
+    "/customers/": {
       "get": {
         "tags": [
           "clientes"
@@ -85,16 +85,14 @@
         "parameters": [
           {
             "name": "page",
-            "in": "path",
-            "required": true,
+            "in": "query",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "pageSize",
-            "in": "path",
-            "required": true,
+            "in": "query",
             "schema": {
               "type": "string"
             }
@@ -164,9 +162,7 @@
             "bearerAuth": []
           }
         ]
-      }
-    },
-    "/customers/update/{id}": {
+      },
       "put": {
         "tags": [
           "clientes"
@@ -211,7 +207,7 @@
         }
       }
     },
-    "/customers/delete/{ids}": {
+    "/customers/{ids}": {
       "delete": {
         "tags": [
           "clientes"
@@ -228,8 +224,14 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "OK"
+          },
           "401": {
             "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"

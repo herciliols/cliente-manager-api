@@ -10,7 +10,7 @@ async function getAllCustomers(req: Request, res: Response) {
        #swagger.security = [{
             "bearerAuth": []
     }] */
-    const { page, pageSize } = req.params;
+    const { page, pageSize } = req.query;
     
     try {
       const result = await getCustomersByPage(Number(page), Number(pageSize));
