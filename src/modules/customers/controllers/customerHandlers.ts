@@ -1,21 +1,15 @@
 import { Request, Response, Router } from 'express';
-import { getCustomersByPage, findCustomerById } from '@modules/customers/models/customerQueries';
-interface CustomerData {
-    id: number;
-    nome: string;
-    sobrenome: string;
-    sexo: string;
-    data_nascimento: string;
-}
+import { getCustomersByPage, 
+         findCustomerById, 
+         updateCustomerById,
+         deleteCustomersByIds } from '@modules/customers/models/customerQueries';
+
 
 async function getAllCustomers(req: Request, res: Response) {
-
     /* #swagger.tags = ['clientes'],
        #swagger.security = [{
             "bearerAuth": []
     }] */
-
-
     const { page, pageSize } = req.params;
     
     try {
@@ -24,7 +18,7 @@ async function getAllCustomers(req: Request, res: Response) {
             content: {
                 "application/json": {
                     schema:{
-                        $ref: "#/components/schemas/CustomersGetResponseSuccess"
+                        $ref: "#/components/schemas/CustomerReadDTO"
                     }
                 }           
             }
@@ -39,7 +33,8 @@ async function getAllCustomers(req: Request, res: Response) {
     }
 }
 
-async function getCustomerById(req: Request, res: Response) {
+
+async function getCustomer(req: Request, res: Response) {
     /* #swagger.tags = ['clientes'],
        #swagger.security = [{
             "bearerAuth": []
@@ -48,6 +43,16 @@ async function getCustomerById(req: Request, res: Response) {
   
     try {
       const result = await findCustomerById(Number(customerId));
+      /* #swagger.responses[200] = {
+            content: {
+                "application/json": {
+                    schema:{
+                        $ref: "#/components/schemas/CustomerReadDTO"
+                    }
+                }           
+            }
+        }   
+      */
       return res.status(200).json(result);
 
 
@@ -60,72 +65,65 @@ async function getCustomerById(req: Request, res: Response) {
 }
 
 
+async function updateCustomer(req: Request, res: Response) {
+  /*  #swagger.tags = ['clientes'] 
+    #swagger.requestBody = {
+          required: true,
+          content: {
+              "application/json": {
+                  schema: {
+                      $ref: "#/components/schemas/CustomerUpdateDTO"
+                  }  
+              }
+          }
+      } 
+  */
+    const customerId = req.params.id;
+    const newData = req.body;
 
-// async function updateCustomerById(req: Request<{ id: number }>, res: Response) {
-//     /* 
-//     #swagger.tags = ['clientes'],
-//     #swagger.security = [{
-//                 "BearerAuth": []
-//     }] 
-//     */
-//     const customerId: number = req.params.id;
-//     const newData: Partial<CustomerData> = req.body;
+    try {
+        const isSuccess = await updateCustomerById(customerId, newData);
+        
 
-//     try {
-//         const updateColumns = Object.keys(newData).map(column => `${column} = ?`).join(', ');
-//         const values = [...Object.values(newData), customerId];
-//         const result = await query(`UPDATE clientes SET ${updateColumns} WHERE id = ?`, values);
-    
-//         if (result && 'affectedRows' in result && result.affectedRows > 0) {
-//           res.json({ message: `Cliente com ID ${customerId} atualizado com sucesso` });
-//         } else {
-//           res.status(404).json({ error: 'Cliente não encontrado' });
-//         }
+        if (isSuccess) {
+          return res.json({ message: `Cliente ID ${customerId} atualizado com sucesso` });
+        } else {
+          return res.status(404).json({ error: 'Cliente não encontrado' });
+        }
+      } catch (error) {
+        return res.status(500).json({
+          error: 'Internal Server Error',
+          message: 'Ocorreu um erro interno no servidor.',
+        });
+    }
+}
 
-//       } catch (error) {
-//         res.status(500).json({
-//           error: 'Internal Server Error',
-//           message: 'Ocorreu um erro interno no servidor.',
-//         });
-//     }
-// }
 
-// async function deleteCustomersByIds(req: Request, res: Response) {
-//     /* 
-//     #swagger.tags = ['clientes'],
-//     #swagger.security = [{
-//                 "BearerAuth": []
-//     }] 
-//     */
-//     const customerIds: string = req.params.id;
+async function deleteCustomers(req: Request, res: Response) {
+    /* #swagger.tags = ['clientes'],
+       #swagger.security = [{
+            "bearerAuth": []
+    }] */
+    const customerIds = req.params.ids;
 
-//     if (!customerIds || typeof customerIds !== 'string') {
-//         return res.status(400).json({ error: 'Parâmetro de IDs de clientes inválido' });
-//     }
+    try {
+        const isSuccess = await deleteCustomersByIds(customerIds);
 
-//     const customerIdsArray: number[] = customerIds.split(',').map(id => parseInt(id.trim(), 10));
-
-//     if (customerIdsArray.length === 0) {
-//         return res.status(400).json({ error: 'Array de IDs de clientes inválido ou vazio' });
-//     }
-
-//     try {
-//         const placeholders: string = customerIdsArray.map(() => '?').join(', ');
-//         const result = await query(`DELETE FROM clientes WHERE id IN (${placeholders})`, customerIdsArray);
-
-//         if (result.affectedRows > 0) {
-//             res.json({ message: `Clientes com IDs [${customerIdsArray.join(', ')}] excluídos com sucesso` });
-//         } else {
-//             res.status(404).json({ error: 'Nenhum cliente encontrado para exclusão' });
-//         }
-//     } catch (error) {
-//         res.status(500).json({
-//             error: 'Internal Server Error',
-//             message: 'Ocorreu um erro interno no servidor.'
-//         });
-//     }
-// }   
+        if (isSuccess) {
+          return res.json({ message: `Cliente ID (${customerIds}) excluídos com sucesso` });
+        } else {
+          return res.status(404).json({ error: 'Há ID de clientes Cliente que não foram encontrados' });
+        }
+    } catch (error) {
+        return res.status(500).json({
+            error: 'Internal Server Error',
+            message: 'Ocorreu um erro interno no servidor.'
+        });
+    }
+}   
 
 
 export { getAllCustomers,
-         getCustomerById };
+         getCustomer,
+         updateCustomer,
+         deleteCustomers };

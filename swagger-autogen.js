@@ -1,7 +1,8 @@
 const swaggerAutogen = require('swagger-autogen')({openapi: '3.0.0'});
 
 const outputFile = './swagger-output.json';
-const endpointsFiles = ['src/modules/customers/customersRoutes.ts', 'src/modules/login/authRoutes.ts']; 
+const endpointsFiles = ['src/modules/login/authRoutes.ts', 
+                        'src/modules/customers/customersRoutes.ts']; 
 
 
 const doc = {
@@ -41,13 +42,19 @@ const doc = {
                 error: "Internal Server Error",
                 message: "Ocorreu um erro interno no servidor"
             },
-            CustomersGetResponseSuccess: {
+            CustomerReadDTO: {
                 id: 1,
                 nome: "João",
                 sobrenome: "Silva",
                 sexo: "Masculino",
                 data_nascimento: "1990-01-01T02:00:00.000Z"
             },
+            CustomerUpdateDTO: {
+                nome: "João",
+                sobrenome: "Silva",
+                sexo: "Masculino",
+                data_nascimento: "1990-01-01T02:00:00.000Z"
+            }
         },
         securitySchemes:{
             bearerAuth: {

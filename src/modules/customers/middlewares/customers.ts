@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import validator from 'validator';
 
-const validateUpdateCustomerData = (req: Request<{ id: number }>, res: Response, next: NextFunction) => {
+const validateUpdateCustomerData = (req: Request, res: Response, next: NextFunction) => {
     const newData = req.body;
 
     if (newData.nome && !validator.isAlpha(newData.nome, 'pt-BR', { ignore: ' ' })) {
