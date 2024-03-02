@@ -6,7 +6,10 @@
   "scripts": {
     "start": "ts-node -r module-alias/register -r dotenv/config swagger-autogen.js && nodemon -r dotenv/config src/app.ts",
     "dev": "ts-node src/app.ts",
-    "generate-swagger": "node swagger-autogen.js"
+    "generate-swagger": "node swagger-autogen.js",
+    "build": "npm run prebuild && npx tsc",
+    "clean": "rimraf dist",
+    "prebuild": "npm run clean"
   },
   "repository": {
     "type": "git",
