@@ -67,7 +67,7 @@ async function getCustomer(req: Request, res: Response) {
 
 async function updateCustomer(req: Request, res: Response) {
   /*  #swagger.tags = ['clientes'] 
-    #swagger.requestBody = {
+      #swagger.requestBody = {
           required: true,
           content: {
               "application/json": {
@@ -76,8 +76,15 @@ async function updateCustomer(req: Request, res: Response) {
                   }  
               }
           }
-      } 
+      }
+      #swagger.tags = ['clientes'],
+      #swagger.security = [{
+            "bearerAuth": []
+    }] 
   */
+
+
+
     const customerId = req.params.id;
     const newData = req.body;
 
