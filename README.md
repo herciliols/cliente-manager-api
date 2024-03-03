@@ -1,10 +1,10 @@
-# Client Manager App 🚀
+# Cliente Manager API 🚀
 
-Welcome to the Client Manager App! This is a backend developed in Express.js for a client management application.
+This is a backend developed in TypeScript and Express.js for a customer management application.
 
 ## Description
 
-The Client Manager App is a Node.js application that provides a basic structure for managing clients. It uses the Express.js framework to create routes and interact with a MySQL database. User authentication is implemented with the generation of JWT tokens to secure sensitive routes.
+The Cliente Manager API is a Node.js application that provides a robust structure for managing customers. It utilizes the Express.js framework to create routes and interacts with a MySQL database. User authentication is implemented with the generation of JWT tokens to secure sensitive routes.
 
 ## Installation
 
@@ -45,17 +45,26 @@ The Client Manager App is a Node.js application that provides a basic structure 
 
     The server will be available at [http://localhost:3000](http://localhost:3000).
 
-6. **Explore API documentation:**
+6. **Test the endpoints:**
 
-    The API is fully documented using Swagger. After running the application, visit [http://localhost:3000/api-docs](http://localhost:3000/api-docs) to explore and interact with the endpoints. Note that you need to obtain a JWT token through the endpoint `POST /auth/login` to access the remaining endpoints.
+    The API endpoints are tested using Jest. Run the following command to execute the tests:
 
+    ```bash
+    npm test
+    ```
+
+7. **Explore API documentation:**
+
+    The API is fully documented using Swagger. After running the application, visit [http://localhost:3000/api-docs](http://localhost:3000/api-docs) to explore and interact with the endpoints. Note that you need to obtain a JWT token through the endpoint `POST /login` to access the remaining endpoints.
 
 ## Main Technologies
 
 - Node.js
 - Express.js
+- TypeScript
 - MySQL
 - JWT (JSON Web Token)
+- Jest (for testing)
 
 ## Author
 
@@ -67,4 +76,4 @@ This project is licensed under the ISC License - see the [LICENSE.md](LICENSE.md
 
 ---
 
-For more details about the application, visit [https://github.com/herciliols/cliente-manager-api](https://github.com/herciliols/cliente-manager-api). 🌟
+For more details about the application, visit [https://github.com/herciliols/cliente-manager-api](https://github.com/herciliols/cliente-manager-api). 🌟"
