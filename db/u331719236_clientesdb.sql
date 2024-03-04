@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 29/02/2024 às 06:45
+-- Tempo de geração: 04/03/2024 às 10:12
 -- Versão do servidor: 10.11.7-MariaDB-cll-lve
 -- Versão do PHP: 7.2.34
 
@@ -32,59 +32,40 @@ CREATE TABLE `clientes` (
   `nome` varchar(255) NOT NULL,
   `sobrenome` varchar(255) NOT NULL,
   `sexo` enum('Masculino','Feminino') NOT NULL,
-  `data_nascimento` date NOT NULL
+  `data_nascimento` date NOT NULL,
+  `rua` varchar(255) NOT NULL,
+  `cidade` varchar(255) NOT NULL,
+  `estado` varchar(2) NOT NULL,
+  `cep` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Despejando dados para a tabela `clientes`
 --
 
-INSERT INTO `clientes` (`id`, `nome`, `sobrenome`, `sexo`, `data_nascimento`) VALUES
-(4, 'Ana', 'Ribeiro', 'Feminino', '1988-11-28'),
-(5, 'Rafael', 'Pereira', 'Masculino', '1992-09-05'),
-(6, 'João', 'Silva', 'Masculino', '1990-05-15'),
-(7, 'Maria', 'Santos', 'Feminino', '1985-08-22'),
-(8, 'Carlos', 'Oliveira', 'Masculino', '1995-03-10'),
-(9, 'Ana', 'Ribeiro', 'Feminino', '1988-11-28'),
-(10, 'Rafael', 'Pereira', 'Masculino', '1992-09-05'),
-(11, 'Julia', 'Ferreira', 'Feminino', '1998-02-14'),
-(12, 'Lucas', 'Souza', 'Masculino', '1993-07-30'),
-(13, 'Amanda', 'Costa', 'Feminino', '1987-12-18'),
-(14, 'Fernando', 'Almeida', 'Masculino', '1994-04-03'),
-(15, 'Larissa', 'Lima', 'Feminino', '1991-10-20'),
-(16, 'Pedro', 'Mendes', 'Masculino', '1989-06-25'),
-(17, 'Camila', 'Martins', 'Feminino', '1997-01-08'),
-(18, 'Guilherme', 'Rodrigues', 'Masculino', '1996-05-02'),
-(19, 'Isabela', 'Gomes', 'Feminino', '1986-09-12'),
-(20, 'Ricardo', 'Silveira', 'Masculino', '1999-03-17'),
-(21, 'Mariana', 'Cruz', 'Feminino', '1984-11-22'),
-(22, 'André', 'Fernandes', 'Masculino', '1997-07-08'),
-(23, 'Patrícia', 'Vieira', 'Feminino', '1992-01-30'),
-(24, 'Gabriel', 'Rocha', 'Masculino', '1983-08-05'),
-(25, 'Carolina', 'Melo', 'Feminino', '1998-04-21'),
-(26, 'Eduardo', 'Pereira', 'Masculino', '1994-10-14'),
-(27, 'Thais', 'Oliveira', 'Feminino', '1989-06-29'),
-(28, 'Vinícius', 'Costa', 'Masculino', '1995-02-03'),
-(29, 'Ana Clara', 'Sousa', 'Feminino', '1990-07-19'),
-(30, 'Leonardo', 'Ferreira', 'Masculino', '1985-12-08'),
-(31, 'Natália', 'Carvalho', 'Feminino', '1993-04-24'),
-(32, 'Marcos', 'Oliveira', 'Masculino', '1996-11-09'),
-(33, 'Aline', 'Santana', 'Feminino', '1988-03-05'),
-(34, 'Matheus', 'Mendes', 'Masculino', '1999-09-01'),
-(35, 'Ana Luiza', 'Silva', 'Feminino', '1994-06-15'),
-(36, 'Alexandre', 'Pereira', 'Masculino', '1991-12-30'),
-(37, 'Raquel', 'Sousa', 'Feminino', '1987-10-14'),
-(38, 'Felipe', 'Martins', 'Masculino', '1996-02-28'),
-(39, 'Bianca', 'Costa', 'Feminino', '1993-08-11'),
-(40, 'José', 'Oliveira', 'Masculino', '1988-04-26'),
-(41, 'Beatriz', 'Cunha', 'Feminino', '1995-01-09'),
-(42, 'Rodrigo', 'Ferreira', 'Masculino', '1990-07-23'),
-(43, 'Laura', 'Almeida', 'Feminino', '1986-05-18'),
-(44, 'Felipe', 'Rodrigues', 'Masculino', '1997-11-01'),
-(45, 'Jéssica', 'Melo', 'Feminino', '1992-03-05'),
-(46, 'Thiago', 'Cruz', 'Masculino', '1998-09-10'),
-(47, 'Raissa', 'Santos', 'Feminino', '1984-06-24'),
-(48, 'Lucas', 'Ferreira', 'Masculino', '1993-02-17');
+INSERT INTO `clientes` (`id`, `nome`, `sobrenome`, `sexo`, `data_nascimento`, `rua`, `cidade`, `estado`, `cep`) VALUES
+(49, 'Renata', 'Oliveira', 'Feminino', '1990-12-03', 'Rua D', 'Cidade D', 'BA', '65432-1098'),
+(50, 'Fábio', 'Santos', 'Masculino', '1987-06-18', 'Rua E', 'Cidade E', 'GO', '87654-3210'),
+(51, 'Marina', 'Mendes', 'Feminino', '1993-09-25', 'Rua F', 'Cidade F', 'SC', '21098-7654'),
+(52, 'Bruno', 'Silva', 'Masculino', '1995-02-08', 'Rua G', 'Cidade G', 'AL', '43210-9876'),
+(53, 'Carla', 'Rocha', 'Feminino', '1988-07-14', 'Rua H', 'Cidade H', 'MT', '98765-4321'),
+(54, 'Roberto', 'Cunha', 'Masculino', '1991-04-30', 'Rua I', 'Cidade I', 'PA', '54321-8765'),
+(55, 'Isabel', 'Fernandes', 'Feminino', '1986-11-12', 'Rua J', 'Cidade J', 'CE', '12345-6789'),
+(56, 'Gustavo', 'Almeida', 'Masculino', '1998-03-27', 'Rua K', 'Cidade K', 'PR', '87654-3210'),
+(57, 'Vanessa', 'Oliveira', 'Feminino', '1994-08-09', 'Rua L', 'Cidade L', 'RS', '21098-7654'),
+(58, 'Pedro', 'Pereira', 'Masculino', '1992-01-22', 'Rua M', 'Cidade M', 'MS', '43210-9876'),
+(59, 'Larissa', 'Rodrigues', 'Feminino', '1989-05-06', 'Rua N', 'Cidade N', 'RN', '98765-4321'),
+(60, 'Ricardo', 'Melo', 'Masculino', '1996-10-19', 'Rua O', 'Cidade O', 'TO', '54321-8765'),
+(61, 'Camila', 'Silva', 'Feminino', '1997-07-03', 'Rua P', 'Cidade P', 'PI', '12345-6789'),
+(62, 'Lucas', 'Santos', 'Masculino', '1984-12-26', 'Rua Q', 'Cidade Q', 'ES', '87654-3210'),
+(63, 'Juliana', 'Ferreira', 'Feminino', '1993-05-11', 'Rua R', 'Cidade R', 'RO', '21098-7654'),
+(64, 'Marcos', 'Costa', 'Masculino', '1987-10-24', 'Rua S', 'Cidade S', 'AP', '43210-9876'),
+(65, 'Aline', 'Cruz', 'Feminino', '1991-02-17', 'Rua T', 'Cidade T', 'AC', '98765-4321'),
+(66, 'Diego', 'Martins', 'Masculino', '1999-09-01', 'Rua U', 'Cidade U', 'MA', '54321-8765'),
+(67, 'Fernanda', 'Gomes', 'Feminino', '1986-06-15', 'Rua V', 'Cidade V', 'AM', '12345-6789'),
+(68, 'Thiago', 'Ferreira', 'Masculino', '1994-01-28', 'Rua W', 'Cidade W', 'RR', '87654-3210'),
+(69, 'Mariana', 'Oliveira', 'Feminino', '1998-04-12', 'Rua X', 'Cidade X', 'SE', '21098-7654'),
+(70, 'Henrique', 'Rodrigues', 'Masculino', '1985-11-05', 'Rua Y', 'Cidade Y', 'RR', '43210-9876');
 
 -- --------------------------------------------------------
 
@@ -130,7 +111,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de tabela `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT de tabela `users`

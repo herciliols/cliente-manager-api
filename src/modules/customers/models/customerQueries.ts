@@ -11,8 +11,20 @@ interface CustomerData {
 
 async function getCustomersByPage(page: number, pageSize: number): Promise<RowDataPacket[]> {
   const offset = (page - 1) * pageSize; 
-  const [listCustomers] = await pool.query("SELECT id, nome, sobrenome, sexo, data_nascimento FROM clientes ORDER BY id LIMIT ? OFFSET ?", [pageSize, offset]);
-  
+  const selectQuery = `SELECT 
+                        JSON_ARRAYAGG(
+                          JSON_OBJECT(
+                            'id', id,
+                            'nome', nome,
+                            'sobrenome', sobrenome,
+                            'endereco', JSON_OBJECT('rua', rua, 'cidade', cidade, 'estado', estado, 'CEP', cep)
+                          )
+                            ) AS customers
+                            FROM clientes
+                            ORDER BY id
+                            LIMIT ? OFFSET ?;`;
+  const [jsonCustomers] = await pool.query(selectQuery, [pageSize, offset]);
+  const listCustomers = JSON.parse((Object.values(jsonCustomers)[0].customers));
   return listCustomers as RowDataPacket[]; 
 }
 
