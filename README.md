@@ -50,7 +50,7 @@ The Cliente Manager API is a Node.js application that provides a robust structur
     The API endpoints are tested using Jest. Run the following command to execute the tests:
 
     ```bash
-    npm test
+    npx jest
     ```
 
 7. **Explore API documentation:**
