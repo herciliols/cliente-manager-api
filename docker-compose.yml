@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  mysql:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: u331719236_clientesdb
+      MYSQL_USER: dev-user
+      MYSQL_PASSWORD: 1234578910
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+
+
+  node_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: cliente-manager-api:latest
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mysql
+    environment:
+      NODE_ENV: production
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: dev-user
+      PMA_PASSWORD: 1234578910
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql
